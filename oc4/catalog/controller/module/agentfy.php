@@ -54,7 +54,6 @@ class Agentfy extends \Opencart\System\Engine\Controller
   public function content_top_before(string &$route, array &$args)
   {
     $this->load->model("extension/agentfy/module/agentfy");
-
     if ($this->config->get("module_agentfy_status")) {
       $_config = new \Opencart\System\Engine\Config();
       $_config->addPath(DIR_EXTENSION . 'agentfy/system/config/');

@@ -44,7 +44,7 @@ class Categories extends \Opencart\System\Engine\Model {
 		$decodedCategoryPath = html_entity_decode($categoryPath);
         $metadata["title"] = $decodedCategoryPath;
 
-		$seo_url_data = $this->model_design_seo_url->getSeoUrlByKeyword('category_id=' . $categoryId, $store_id);
+		$seo_url_data = $this->model_design_seo_url->getSeoUrlByKeyword('category_id=' . $categoryId, $store_id, $this->config->get('config_language_id'));
 		$url = HTTP_CATALOG . 'index.php?route=product/category&path=' . $categoryId;
 
 		if ($seo_url_data) {

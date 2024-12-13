@@ -43,7 +43,7 @@ class Products extends \Opencart\System\Engine\Model {
 
 		$document = $this->model_extension_agentfy_module_agentfy_api->getDocument($sourceId, $productId, $store_id);
 		$productInfo = $this->model_catalog_product->getProduct($productId);
-		$seo_url_data = $this->model_design_seo_url->getSeoUrlByKeyword('product_id='.$productId, $store_id);
+		$seo_url_data = $this->model_design_seo_url->getSeoUrlByKeyword('product_id='.$productId, $store_id, $this->config->get('config_language_id'));
 
         $this->load->model("setting/setting");
         $module_setting = $this->model_setting_setting->getSetting(

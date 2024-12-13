@@ -36,7 +36,7 @@ class Manufacturers extends \Opencart\System\Engine\Model {
 		$metadata = [];
         $metadata["title"] = html_entity_decode($manufacturerInfo['name'],ENT_QUOTES, 'UTF-8');
 
-		$seo_url_data = $this->model_design_seo_url->getSeoUrlByKeyword('manufacturer_id=' . $manufacturerId, $store_id);
+		$seo_url_data = $this->model_design_seo_url->getSeoUrlByKeyword('manufacturer_id=' . $manufacturerId, $store_id, $this->config->get('config_language_id'));
 		$url = HTTP_CATALOG . 'index.php?route=product/manufacturer&manufacturer_id=' . $manufacturerId;
 
 		if ($seo_url_data) {

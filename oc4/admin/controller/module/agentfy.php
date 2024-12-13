@@ -558,10 +558,10 @@ class Agentfy extends \Opencart\System\Engine\Controller
         }
 
         if (
-            $this->strlen(
+            mb_strlen(
                 $this->request->post["module_agentfy_setting"]["api_key"]
             ) < 3 ||
-            $this->strlen(
+            mb_strlen(
                 $this->request->post["module_agentfy_setting"]["api_key"]
             ) > 64
         ) {
@@ -570,17 +570,6 @@ class Agentfy extends \Opencart\System\Engine\Controller
 
         return !$this->error;
     }
-
-    		
-	private function strlen(string $str): int {
-		if (VERSION >= '4.0.2.0') {
-			return (int)oc_strlen($str);
-		} elseif (VERSION >= '4.0.1.0') {
-			return (int)Helper\Utf8\strlen($str);
-		} else {
-			return (int)utf8_strlen($str);
-		}
-	}
 
     public function autocompleteAgents()
     {

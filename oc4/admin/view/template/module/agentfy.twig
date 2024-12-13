@@ -408,7 +408,7 @@ $('.module-agentfy').on('click', '.button-save', function() {
         success: function(json) {
             $('.module-agentfy .alert-success').remove();
             {% if not module_agentfy_setting['api_key'] %}
-            //window.location.reload()
+            window.location.reload()
             {% endif %}
             if (json['success']) {
                 $('.module-agentfy > .container-fluid').prepend('<div class="alert alert-success alert-dismissible"><i class="fa-solid fa-circle-check"></i> <button type="button" class="btn-close" data-bs-dismiss="alert"></button> ' + json['success'] + '</div>');
