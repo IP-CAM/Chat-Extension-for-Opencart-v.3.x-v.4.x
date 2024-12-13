@@ -38,6 +38,8 @@ class Agentfy extends \Opencart\System\Engine\Controller
         $this->load->model("extension/agentfy/module/agentfy");
         $this->load->model("extension/agentfy/module/agentfy/api");
 
+
+        $this->document->addScript(HTTP_CATALOG.'extension/agentfy/admin/view/javascript/agentfy/ai_autocomplete.js');
         $this->document->setTitle($this->language->get("heading_title"));
 
         $this->load->model("setting/setting");

@@ -106,9 +106,8 @@
                                 <label class="col-sm-2 col-form-label" for="input-agent">{{ entry_agent }}</label>
                                 <div class="col-sm-10">
                                     <div class="input-group">
-                                        <input type="text" name="agent" value="{{ agent }}" placeholder="{{ entry_agent }}" id="input-parent" data-oc-target="autocomplete-parent" class="form-control" autocomplete="off"/>
-                  <ul id="autocomplete-parent" class="dropdown-menu"></ul>
-                  <div id="error-parent" class="invalid-feedback"></div>
+                                        <input type="text" name="agent" value="{{ agent }}" placeholder="{{ entry_agent }}" id="input-parent" dv-data-oc-target="autocomplete-parent" class="form-control" autocomplete="off"/>
+                                        <ul id="autocomplete-parent" class="dropdown-menu"></ul>
                                         <span class="input-group-btn">
                                             <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#agent_modal">{{ button_create_agent }}</button>
                                         </span>
@@ -422,30 +421,31 @@ $('.module-agentfy').on('click', '.button-save', function() {
     });
 });
 
-$('input[name=\'agent\']').autocomplete({
-'source': function(request, response) {
-    $.ajax({
-        url: 'index.php?route=extension/agentfy/module/agentfy{{separator}}autocompleteAgents&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
-        dataType: 'json',
-        success: function(json) {
-            json.unshift({
-                agent_id: 0,
-                name: '{{ text_none }}'
-            });
+$('input[name=\'agent\']').ai_autocomplete({
+    'source': function(request, response) {
+        $.ajax({
+            url: 'index.php?route=extension/agentfy/module/agentfy{{separator}}autocompleteAgents&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
+            dataType: 'json',
+            success: function(json) {
+                json.unshift({
+                    agent_id: 0,
+                    name: '{{ text_none }}'
+                });
 
-            response($.map(json, function(item) {
-                return {
-                    label: item['name'],
-                    value: item['agent_id']
-                }
-            }));
-        }
-    });
-},
-'select': function(item) {
-    $('input[name=\'agent\']').val(item['label']);
-    $('input[name=\'module_agentfy_setting[agent_id]\']').val(item['value']);
-}
+                response($.map(json, function(item) {
+                    return {
+                        label: item['name'],
+                        value: item['agent_id']
+                    }
+                }));
+            }
+        });
+    },
+    'select': function(item) {
+        console.log('select',item)
+        $('input[name=\'agent\']').val(item['label']);
+        $('input[name=\'module_agentfy_setting[agent_id]\']').val(item['value']);
+    }
 });
 </script>
 <style>
